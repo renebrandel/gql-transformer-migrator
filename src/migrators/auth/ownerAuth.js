@@ -61,5 +61,4 @@ export function migrateOwnerAuth(node, defaultAuthMode) {
       authRules.push(createAuthRule(explicitPrivateAllowRule.strategy, explicitPrivateAllowRule.provider, explicitPrivateAllowRule.operations))
     }
   }
-  return node
 }

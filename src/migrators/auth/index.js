@@ -27,7 +27,6 @@ export function addAuthRuleToNode(node, rule) {
       authRules.push(rule)
     }
   }
-  return node
 }
 
 function getAuthStrategy(rule) {
@@ -84,13 +83,11 @@ function mergeAuthRules(node, rules) {
   }, [])
 
   setAuthRules(node, newRules.map(r => createAuthRule(getAuthStrategy(r), getAuthProvider(r), getAuthOperations(r))))
-
-  return node
 }
 
 export function migrateAuth(node, defaultAuthMode) {
   if (!isModelType(node)) {
-    return node
+    return
   }
 
   migrateFieldAuth(node)
@@ -102,5 +99,4 @@ export function migrateAuth(node, defaultAuthMode) {
   migrateDefaultAuthMode(node, defaultAuthMode)
 
   mergeAuthRules(node, getAuthRules(node))
-  return node
 }

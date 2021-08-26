@@ -43,7 +43,7 @@ function isListType(field) {
 export function migrateConnection(node, ast) {
   const connections = getFieldsWithConnection(node.fields)
   if (connections.length === 0) {
-    return node
+    return
   }
 
   connections.forEach(connectionField => {
@@ -84,6 +84,4 @@ export function migrateConnection(node, ast) {
       }
     }
   })
-
-  return node
 }

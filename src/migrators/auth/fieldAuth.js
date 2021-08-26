@@ -10,7 +10,7 @@ function getFieldsWithAuthRules(node) {
 
 export function migrateFieldAuth(node) {
   if (!hasFieldAuthRules(node)) {
-    return node
+    return
   }
 
   const fieldWithAuthRules = getFieldsWithAuthRules(node)
@@ -18,6 +18,4 @@ export function migrateFieldAuth(node) {
     .map(f => getAuthRules(f))
     .flat()
     .forEach(rule => addAuthRuleToNode(node, rule))
-
-  return node
 }

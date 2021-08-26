@@ -21,7 +21,6 @@ export function migratePrimaryKey(node, directive) {
         )]
     }
     node.fields[fieldIndex].directives.push(createDirectiveNode('primaryKey', args))
-    return node
 }
 
 export function isSecondaryKey(directive) {
@@ -46,13 +45,12 @@ export function migrateSecondaryKey(node, directive) {
         )]
     }
     node.fields[fieldIndex].directives.push(createDirectiveNode('index', args))
-    return node
 }
 
 export function migrateKeys(node) {
     const dirs = node.directives
     if (!dirs) {
-        return node
+        return
     }
     let keys = []
     for (const dir of dirs) {
@@ -68,5 +66,4 @@ export function migrateKeys(node) {
             migrateSecondaryKey(node, index)
         }
     }
-    return node
 }

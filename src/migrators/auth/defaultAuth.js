@@ -37,22 +37,20 @@ function getDefaultAuthRule(authMode, rules) {
 
 export function migrateDefaultAuthMode(node, defaultAuthMode) {
   if (defaultAuthMode === 'iam') {
-    return node
+    return 
   }
 
   if (!hasAuthDirectives(node)) {
     const authRule = createAuthRule(defaultAuthModeMap[defaultAuthMode], defaultAuthMode)
     addAuthRuleToNode(node, authRule)
-    return node
-  } else {
+    return
+  }
 
-    const authRules = getAuthRules(node)
+  const authRules = getAuthRules(node)
 
-    // if rule with default auth mode exist, then don't mess with it otherwise add it
-    const defaultAuthRule = getDefaultAuthRule(defaultAuthMode, authRules)
-    if (!defaultAuthRule) {
-      addAuthRuleToNode(node, createAuthRule(defaultAuthModeMap[defaultAuthMode], defaultAuthMode))
-    }
-    return node
+  // if rule with default auth mode exist, then don't mess with it otherwise add it
+  const defaultAuthRule = getDefaultAuthRule(defaultAuthMode, authRules)
+  if (!defaultAuthRule) {
+    addAuthRuleToNode(node, createAuthRule(defaultAuthModeMap[defaultAuthMode], defaultAuthMode))
   }
 }
